@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: maven
+  namespace: maven
+  labels:
+    app: maven
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: maven
+  template:
+    metadata:
+      labels:
+        app: maven
+    spec:
+      containers:
+      - name: maven-container
+        image: naresh240/maven-k8s:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8080  
